@@ -41,5 +41,39 @@ public:
 };
 // 2nd solution
 
+class Solution{
+public:
+int countSmallerThenMid(vector<int> &row , int ele){
+    int low  =0 ;
+    int high = row.size()-1;
+    while(low <= high){
+        int mid = (low + high) >> 1;
+        if(row[mid] <= ele){
+            low = mid +1;
 
+        }else{
+            high = mid-1;
+        }
+    }
+    return low;
+}
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+        
+        int cnt = INT_MIN;
+        vector<int> ans(2);
+        for(int i = 0; i < n; i++){
+            int countone = m - countSmallerThenMid(arr[i] , 0);
+            if(cnt < countone){
+                cnt = countone;
+                ans[0] = i;
+                ans[1] = cnt;
+
+            }
+            
+        }
+        if(ans[1] == 0){
+            return -1;
+        }
+        return ans[0];
+	}
 
